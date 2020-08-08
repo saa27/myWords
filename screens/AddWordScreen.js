@@ -8,10 +8,14 @@ import {
   TextInput,
 } from "react-native";
 import Colors from "../constants/Colors";
+import * as wordsActions from "../store/wordsAction";
+
+import { useDispatch } from "react-redux";
 
 const AddWordScreen = (props) => {
   const [word, setWord] = useState("");
   const [description, setDescription] = useState("");
+  const dispatch = useDispatch();
 
   const WordChangeHandler = (text) => {
     setWord(text);
@@ -19,6 +23,11 @@ const AddWordScreen = (props) => {
 
   const DescriptionChangeHandler = (text) => {
     setDescription(text);
+  };
+
+  const saveWordHandler = () => {
+    dispatch(wordsActions.addWord(word, description));
+    props.navigation.goBack();
   };
 
   return (
@@ -36,7 +45,11 @@ const AddWordScreen = (props) => {
           onChangeText={DescriptionChangeHandler}
           value={description}
         />
-        <Button title="ADD WORD" color={Colors.primary} onPress={() => {}} />
+        <Button
+          title="ADD WORD"
+          color={Colors.primary}
+          onPress={saveWordHandler}
+        />
       </View>
     </ScrollView>
   );

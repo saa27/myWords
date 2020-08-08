@@ -34,8 +34,9 @@ export default function App() {
       />
     );
   }
-  return;
-  <Provider>
-    <WordsNavigator />
-  </Provider>;
+  return (
+    <Provider store={store}>
+      <WordsNavigator />
+    </Provider>
+  );
 }
