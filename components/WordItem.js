@@ -7,7 +7,7 @@ const WordItem = props => {
     <TouchableOpacity onPress={props.onSelect} style={styles.placeItem}>
       <View style={styles.infoContainer}>
         <Text style={styles.title}>{props.word}</Text>
-        <Text style={styles.address}>{props.description}</Text>
+        <Text style={styles.address} numberOfLines={1}>{props.description}</Text>
       </View>
     </TouchableOpacity>
   );
@@ -21,14 +21,13 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
   },
   infoContainer: {
-    marginLeft: 25,
-    width: 250,
+    marginHorizontal: 25,
     justifyContent: 'center',
     alignItems: 'flex-start'
   },
   title: {
     color: 'black',
-    fontSize: 18,
+    fontSize: 20,
     marginBottom: 5
   },
   address: {

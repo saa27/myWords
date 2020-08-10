@@ -1,20 +1,19 @@
-import React from "react";
-import {
-  View,
-  Text,
-  Button,
-  StyleSheet,
-  Platform,
-  FlatList,
-} from "react-native";
+import React, { useEffect } from "react";
+import { StyleSheet, Platform, FlatList } from "react-native";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 import CustomHeaderButton from "../components/CustomHeaderButton";
 import WordItem from "../components/WordItem";
+import * as wordsActions from "../store/wordsAction";
 
 const MywordsScreen = (props) => {
   const words = useSelector((state) => state.word.words);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(wordsActions.loadWords());
+  },[dispatch]);
 
   return (
     <FlatList

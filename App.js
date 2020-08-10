@@ -8,6 +8,16 @@ import ReduxThunk from "redux-thunk";
 
 import WordsNavigator from "./navigation/WordsNavigator";
 import wordsReducer from "./store/wordsReducer";
+import { init } from "./helpers/db";
+
+init()
+  .then(() => {
+    console.log("Initialized database");
+  })
+  .catch((err) => {
+    console.log("Initializing db failed");
+    console.log(err);
+  });
 
 const fetchFonts = () => {
   return Font.loadAsync({
