@@ -13,7 +13,7 @@ const MywordsScreen = (props) => {
 
   useEffect(() => {
     dispatch(wordsActions.loadWords());
-  },[dispatch]);
+  }, [dispatch]);
 
   return (
     <FlatList
@@ -24,7 +24,10 @@ const MywordsScreen = (props) => {
           word={itemData.item.word}
           description={itemData.item.description}
           onSelect={() => {
-            props.navigation.navigate("WordDetail");
+            props.navigation.navigate("WordDetail", {
+              wordId: itemData.item.id,
+              word: itemData.item.word,
+            });
           }}
         />
       )}

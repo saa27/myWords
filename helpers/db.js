@@ -54,4 +54,22 @@ export const fetchWords = () => {
     });
   });
   return promise;
-}
+};
+
+export const updateWord = (id, word, description) => {
+  const promise = new Promise((resolve, reject) => {
+    db.transaction((tx) => {
+      tx.executeSql(
+        "UPDATE words SET word = ?, description = ? WHERE id = ?;",
+        [word, description, id],
+        (_, result) => {
+          resolve(result);
+        },
+        (_, err) => {
+          reject(err);
+        }
+      );
+    });
+  });
+  return promise;
+};

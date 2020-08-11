@@ -1,7 +1,8 @@
 export const ADD_WORD = "ADD_WORD";
 export const LOAD_WORDS = "LOAD_WORDS";
+export const EDIT_WORD = "EDIT_WORD";
 
-import { insertWord, fetchWords } from "../helpers/db";
+import { insertWord, fetchWords, updateWord } from "../helpers/db";
 
 export const addWord = (word, description) => {
   return async (dispatch) => {
