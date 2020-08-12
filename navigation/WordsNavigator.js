@@ -5,7 +5,7 @@ import { createStackNavigator } from "react-navigation-stack";
 
 import AddWordScreen from "../screens/AddWordScreen";
 import WordDetailScreen from "../screens/WordDetailScreen";
-import EditWordSCreen from "../screens/EditWordScreen";
+import EditWordScreen from "../screens/EditWordScreen";
 import FavoritesScreen from "../screens/FavoritesScreen";
 import MywordsScreen from "../screens/MywordsScreen";
 import Colors from "../constants/Colors";
@@ -15,7 +15,7 @@ const WordsNavigator = createStackNavigator(
     MyWords: MywordsScreen,
     AddWord: AddWordScreen,
     WordDetail: WordDetailScreen,
-    EditWord: EditWordSCreen,
+    EditWord: EditWordScreen,
     Favorites: FavoritesScreen,
   },
   {

@@ -22,7 +22,7 @@ const WordItem = (props) => {
           </Text>
         </View>
         <View style={styles.icon}>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={props.onSelect}>
             <Ionicons
               name={
                 Platform.OS === "android"

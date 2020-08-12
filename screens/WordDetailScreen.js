@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { View, Text, Button, StyleSheet, ScrollView } from "react-native";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import { useSelector } from "react-redux";
@@ -11,6 +11,10 @@ const WordDetailScreen = (props) => {
   const selectedWord = useSelector((state) =>
     state.word.words.find((word) => word.id === wordId)
   );
+
+  useEffect(() => {
+    props.navigation.setParams({ wId: wordId });
+  }, [wordId]);
 
   return (
     <View style={styles.screen}>
@@ -25,21 +29,22 @@ const WordDetailScreen = (props) => {
 };
 
 WordDetailScreen.navigationOptions = (navData) => {
-    return {
-      headerTitle: "Detail",
-      headerRight: () => (
-        <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
-          <Item
-            title="Edit Word"
-            iconName={Platform.OS === "android" ? "md-create" : "ios-create"}
-            onPress={() => {
-              navData.navigation.navigate("EditWord");
-            }}
-          />
-        </HeaderButtons>
-      ),
-    };
+  const wId = navData.navigation.getParam("wId");
+  return {
+    headerTitle: "Detail",
+    headerRight: () => (
+      <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
+        <Item
+          title="Edit Word"
+          iconName={Platform.OS === "android" ? "md-create" : "ios-create"}
+          onPress={() => {
+            navData.navigation.navigate("EditWord", { wordId: wId });
+          }}
+        />
+      </HeaderButtons>
+    ),
   };
+};
 
 const styles = StyleSheet.create({
   screen: {

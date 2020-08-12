@@ -10,25 +10,17 @@ import {
 import Colors from "../constants/Colors";
 import * as wordsActions from "../store/wordsAction";
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const EditWordScreen = (props) => {
-  const [word, setWord] = useState("");
-  const [description, setDescription] = useState("");
-  const dispatch = useDispatch();
+  const wordId = props.navigation.getParam("wordId");
 
-  const WordChangeHandler = (text) => {
-    setWord(text);
-  };
+  const editedWord = useSelector((state) =>
+    state.word.words.find((word) => word.id === wordId)
+  );
 
-  const DescriptionChangeHandler = (text) => {
-    setDescription(text);
-  };
-
-  const saveWordHandler = () => {
-    dispatch(wordsActions.addWord(word, description));
-    props.navigation.goBack();
-  };
+  const [word, setWord] = useState(editedWord.word);
+  const [description, setDescription] = useState(editedWord.description);
 
   return (
     <ScrollView>
@@ -36,19 +28,23 @@ const EditWordScreen = (props) => {
         <Text style={styles.label}>Word</Text>
         <TextInput
           style={styles.textInput}
-          onChangeText={WordChangeHandler}
           value={word}
+          onChangeText={(text) => {
+            setWord(text);
+          }}
         />
         <Text style={styles.label}>Desciption</Text>
         <TextInput
           style={styles.textInput}
-          onChangeText={DescriptionChangeHandler}
           value={description}
+          onChangeText={(text) => {
+            setDescription(text);
+          }}
         />
         <Button
           title="ADD WORD"
           color={Colors.primary}
-          onPress={saveWordHandler}
+          onPress={() => {}}
         />
       </View>
     </ScrollView>
@@ -56,7 +52,7 @@ const EditWordScreen = (props) => {
 };
 
 EditWordScreen.navigationOptions = {
-  headerTitle: "Add New Words",
+  headerTitle: "Edit Word",
 };
 
 const styles = StyleSheet.create({
