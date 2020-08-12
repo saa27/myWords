@@ -24,6 +24,26 @@ export const addWord = (word, description) => {
   };
 };
 
+export const editWord = (id, word, description) => {
+  return async (dispatch) => {
+    try {
+      const dbResult = await updateWord(id, word, description);
+      console.log(dbResult);
+      dispatch({
+        type: EDIT_WORD,
+        wid: id,
+        wordData: {
+          word: word,
+          description: description,
+        },
+      });
+    } catch (err) {
+      console.log(err);
+      throw err;
+    }
+  };
+};
+
 export const loadWords = () => {
   return async (dispatch) => {
     try {

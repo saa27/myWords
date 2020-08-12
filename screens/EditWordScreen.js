@@ -14,6 +14,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 const EditWordScreen = (props) => {
   const wordId = props.navigation.getParam("wordId");
+  const dispatch = useDispatch();
 
   const editedWord = useSelector((state) =>
     state.word.words.find((word) => word.id === wordId)
@@ -21,6 +22,11 @@ const EditWordScreen = (props) => {
 
   const [word, setWord] = useState(editedWord.word);
   const [description, setDescription] = useState(editedWord.description);
+
+  const saveChangeHandler = () => {
+    dispatch(wordsActions.editWord(wordId, word, description));
+    props.navigation.navigate("WordDetail");
+  };
 
   return (
     <ScrollView>
@@ -40,11 +46,12 @@ const EditWordScreen = (props) => {
           onChangeText={(text) => {
             setDescription(text);
           }}
+          multiline
         />
         <Button
-          title="ADD WORD"
+          title="SAVE CHANGES"
           color={Colors.primary}
-          onPress={() => {}}
+          onPress={saveChangeHandler}
         />
       </View>
     </ScrollView>
