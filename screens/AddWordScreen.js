@@ -44,6 +44,7 @@ const AddWordScreen = (props) => {
           style={styles.textInput}
           onChangeText={DescriptionChangeHandler}
           value={description}
+          multiline
         />
         <Button
           title="ADD WORD"

@@ -1,13 +1,23 @@
-import React, { useEffect } from "react";
-import { View, Text, Button, StyleSheet, ScrollView } from "react-native";
+import React, { useEffect, useCallback } from "react";
+import {
+  View,
+  Text,
+  Button,
+  StyleSheet,
+  ScrollView,
+  Alert,
+} from "react-native";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import * as wordsActions from "../store/wordsAction";
 
 import Card from "../components/Card";
 import CustomHeaderButton from "../components/CustomHeaderButton";
 
 const WordDetailScreen = (props) => {
   const wordId = props.navigation.getParam("wordId");
+  const dispatch = useDispatch();
+
   const selectedWord = useSelector((state) =>
     state.word.words.find((word) => word.id === wordId)
   );
@@ -29,6 +39,7 @@ const WordDetailScreen = (props) => {
 };
 
 WordDetailScreen.navigationOptions = (navData) => {
+  const deleteWord = navData.navigation.getParam("delete");
   const wId = navData.navigation.getParam("wId");
   return {
     headerTitle: "Detail",

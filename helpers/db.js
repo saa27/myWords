@@ -73,3 +73,21 @@ export const updateWord = (id, word, description) => {
   });
   return promise;
 };
+
+export const delWord = (id) => {
+  const promise = new Promise((resolve, reject) => {
+    db.transaction((tx) => {
+      tx.executeSql(
+        "DELETE FROM words WHERE id = ?;",
+        [id],
+        (_, result) => {
+          resolve(result);
+        },
+        (_, err) => {
+          reject(err);
+        }
+      );
+    });
+  });
+  return promise;
+};

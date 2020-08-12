@@ -22,15 +22,24 @@ const WordItem = (props) => {
           </Text>
         </View>
         <View style={styles.icon}>
-          <TouchableOpacity onPress={props.onSelect}>
+          <View style={{marginHorizontal: 25}}>
+            <TouchableOpacity onPress={props.onSelect}>
+              <Ionicons
+                name={
+                  Platform.OS === "android"
+                    ? "md-arrow-dropright"
+                    : "ios-arrow-forward"
+                }
+                size={30}
+                color="black"
+              />
+            </TouchableOpacity>
+          </View>
+          <TouchableOpacity onPress={props.onDelete}>
             <Ionicons
-              name={
-                Platform.OS === "android"
-                  ? "md-arrow-dropright"
-                  : "ios-arrow-forward"
-              }
+              name={Platform.OS === "android" ? "md-trash" : "ios-trash"}
               size={30}
-              color="black"
+              color="maroon"
             />
           </TouchableOpacity>
         </View>
@@ -41,7 +50,9 @@ const WordItem = (props) => {
 
 const styles = StyleSheet.create({
   icon: {
-    alignItems: "flex-end",
+    flexDirection: "row",
+    justifyContent: "flex-end",
+    padding: 5,
   },
   screen: {
     flexDirection: "row",
@@ -58,6 +69,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 25,
     justifyContent: "center",
     alignItems: "flex-start",
+    width: "60%"
   },
   title: {
     color: "black",

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import {
   View,
   Text,
@@ -6,11 +6,14 @@ import {
   StyleSheet,
   ScrollView,
   TextInput,
+  Alert,
 } from "react-native";
 import Colors from "../constants/Colors";
 import * as wordsActions from "../store/wordsAction";
+import { HeaderButtons, Item } from "react-navigation-header-buttons";
 
 import { useDispatch, useSelector } from "react-redux";
+import CustomHeaderButton from "../components/CustomHeaderButton";
 
 const EditWordScreen = (props) => {
   const wordId = props.navigation.getParam("wordId");
@@ -58,8 +61,18 @@ const EditWordScreen = (props) => {
   );
 };
 
-EditWordScreen.navigationOptions = {
-  headerTitle: "Edit Word",
+EditWordScreen.navigationOptions = (navData) => {
+  return {
+    headerTitle: "Edit Word",
+    headerRight: () => (
+      <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
+        <Item
+          title="Delete Word"
+          iconName={Platform.OS === "android" ? "md-trash" : "ios-trash"}
+        />
+      </HeaderButtons>
+    ),
+  };
 };
 
 const styles = StyleSheet.create({

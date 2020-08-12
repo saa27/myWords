@@ -1,4 +1,4 @@
-import { ADD_WORD, LOAD_WORDS, EDIT_WORD } from "./wordsAction";
+import { ADD_WORD, LOAD_WORDS, EDIT_WORD, DELETE_WORD } from "./wordsAction";
 import Words from "../models/Words";
 
 const initialState = {
@@ -36,6 +36,11 @@ export default (state = initialState, action) => {
       );
       return {
         words: state.words.concat(newWord),
+      };
+    case DELETE_WORD:
+      return {
+        ...state,
+        words: state.words.filter((word) => word.id !== action.wid),
       };
     default:
       return state;
