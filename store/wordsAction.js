@@ -2,8 +2,9 @@ export const ADD_WORD = "ADD_WORD";
 export const LOAD_WORDS = "LOAD_WORDS";
 export const EDIT_WORD = "EDIT_WORD";
 export const DELETE_WORD = "DELETE_WORD";
+export const SEARCH_WORD = "SEARCH_WORD";
 
-import { insertWord, fetchWords, updateWord, delWord } from "../helpers/db";
+import { insertWord, fetchWords, updateWord, delWord, searchWord } from "../helpers/db";
 
 export const addWord = (word, description) => {
   return async (dispatch) => {
@@ -51,6 +52,18 @@ export const loadWords = () => {
       const dbResult = await fetchWords();
       console.log(dbResult);
       dispatch({ type: LOAD_WORDS, words: dbResult.rows._array });
+    } catch (err) {
+      throw err;
+    }
+  };
+};
+
+export const searchWords = (query) => {
+  return async (dispatch) => {
+    try {
+      const dbResult = await searchWord(query);
+      console.log(dbResult);
+      dispatch({ type: SEARCH_WORD, words: dbResult.rows._array });
     } catch (err) {
       throw err;
     }

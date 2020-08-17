@@ -10,6 +10,7 @@ import {
 } from "react-native";
 import Colors from "../constants/Colors";
 import * as wordsActions from "../store/wordsAction";
+import { LinearGradient } from "expo-linear-gradient";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 
 import { useDispatch, useSelector } from "react-redux";
@@ -32,46 +33,40 @@ const EditWordScreen = (props) => {
   };
 
   return (
-    <ScrollView>
-      <View style={styles.form}>
-        <Text style={styles.label}>Word</Text>
-        <TextInput
-          style={styles.textInput}
-          value={word}
-          onChangeText={(text) => {
-            setWord(text);
-          }}
-        />
-        <Text style={styles.label}>Desciption</Text>
-        <TextInput
-          style={styles.textInput}
-          value={description}
-          onChangeText={(text) => {
-            setDescription(text);
-          }}
-          multiline
-        />
-        <Button
-          title="SAVE CHANGES"
-          color={Colors.primary}
-          onPress={saveChangeHandler}
-        />
-      </View>
-    </ScrollView>
+    <LinearGradient colors={["#ffffff", "#221a8f"]} style={styles.gradient}>
+      <ScrollView>
+        <View style={styles.form}>
+          <Text style={styles.label}>Word</Text>
+          <TextInput
+            style={styles.textInput}
+            value={word}
+            onChangeText={(text) => {
+              setWord(text);
+            }}
+          />
+          <Text style={styles.label}>Desciption</Text>
+          <TextInput
+            style={styles.textInput}
+            value={description}
+            onChangeText={(text) => {
+              setDescription(text);
+            }}
+            multiline
+          />
+          <Button
+            title="SAVE CHANGES"
+            color={Colors.primary}
+            onPress={saveChangeHandler}
+          />
+        </View>
+      </ScrollView>
+    </LinearGradient>
   );
 };
 
 EditWordScreen.navigationOptions = (navData) => {
   return {
     headerTitle: "Edit Word",
-    headerRight: () => (
-      <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
-        <Item
-          title="Delete Word"
-          iconName={Platform.OS === "android" ? "md-trash" : "ios-trash"}
-        />
-      </HeaderButtons>
-    ),
   };
 };
 
@@ -89,6 +84,9 @@ const styles = StyleSheet.create({
     marginBottom: 15,
     paddingVertical: 4,
     paddingHorizontal: 2,
+  },
+  gradient: {
+    flex: 1,
   },
 });
 

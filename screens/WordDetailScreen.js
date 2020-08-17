@@ -9,6 +9,7 @@ import {
 } from "react-native";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import { useSelector, useDispatch } from "react-redux";
+import { LinearGradient } from "expo-linear-gradient";
 import * as wordsActions from "../store/wordsAction";
 
 import Card from "../components/Card";
@@ -27,14 +28,16 @@ const WordDetailScreen = (props) => {
   }, [wordId]);
 
   return (
-    <View style={styles.screen}>
-      <Text style={styles.word}>{selectedWord.word}</Text>
-      <Card style={styles.card}>
-        <ScrollView>
-          <Text style={styles.description}>{selectedWord.description}</Text>
-        </ScrollView>
-      </Card>
-    </View>
+    <LinearGradient colors={["#ffffff", "#0f8794"]} style={styles.gradient}>
+      <View style={styles.screen}>
+        <Text style={styles.word}>{selectedWord.word}</Text>
+        <Card style={styles.card}>
+          <ScrollView>
+            <Text style={styles.description}>{selectedWord.description}</Text>
+          </ScrollView>
+        </Card>
+      </View>
+    </LinearGradient>
   );
 };
 
@@ -75,6 +78,9 @@ const styles = StyleSheet.create({
   description: {
     padding: 20,
     fontSize: 20,
+  },
+  gradient: {
+    flex: 1,
   },
 });
 

@@ -9,6 +9,7 @@ import {
 } from "react-native";
 import Colors from "../constants/Colors";
 import * as wordsActions from "../store/wordsAction";
+import { LinearGradient } from "expo-linear-gradient";
 
 import { useDispatch } from "react-redux";
 
@@ -31,28 +32,30 @@ const AddWordScreen = (props) => {
   };
 
   return (
-    <ScrollView>
-      <View style={styles.form}>
-        <Text style={styles.label}>Word</Text>
-        <TextInput
-          style={styles.textInput}
-          onChangeText={WordChangeHandler}
-          value={word}
-        />
-        <Text style={styles.label}>Desciption</Text>
-        <TextInput
-          style={styles.textInput}
-          onChangeText={DescriptionChangeHandler}
-          value={description}
-          multiline
-        />
-        <Button
-          title="ADD WORD"
-          color={Colors.primary}
-          onPress={saveWordHandler}
-        />
-      </View>
-    </ScrollView>
+    <LinearGradient colors={["#ffffff", "#221a8f"]} style={styles.gradient}>
+      <ScrollView>
+        <View style={styles.form}>
+          <Text style={styles.label}>Word</Text>
+          <TextInput
+            style={styles.textInput}
+            onChangeText={WordChangeHandler}
+            value={word}
+          />
+          <Text style={styles.label}>Desciption</Text>
+          <TextInput
+            style={styles.textInput}
+            onChangeText={DescriptionChangeHandler}
+            value={description}
+            multiline
+          />
+          <Button
+            title="ADD WORD"
+            color={Colors.primary}
+            onPress={saveWordHandler}
+          />
+        </View>
+      </ScrollView>
+    </LinearGradient>
   );
 };
 
@@ -74,6 +77,9 @@ const styles = StyleSheet.create({
     marginBottom: 15,
     paddingVertical: 4,
     paddingHorizontal: 2,
+  },
+  gradient: {
+    flex: 1,
   },
 });
 

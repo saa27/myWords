@@ -91,3 +91,21 @@ export const delWord = (id) => {
   });
   return promise;
 };
+
+export const searchWord = (query) => {
+  const promise = new Promise((resolve, reject) => {
+    db.transaction((tx) => {
+      tx.executeSql(
+        "SELECT * FROM words WHERE word LIKE '?%';",
+        [query],
+        (_, result) => {
+          resolve(result);
+        },
+        (_, err) => {
+          reject(err);
+        }
+      );
+    });
+  });
+  return promise;
+};

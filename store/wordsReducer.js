@@ -1,4 +1,10 @@
-import { ADD_WORD, LOAD_WORDS, EDIT_WORD, DELETE_WORD } from "./wordsAction";
+import {
+  ADD_WORD,
+  LOAD_WORDS,
+  EDIT_WORD,
+  DELETE_WORD,
+  SEARCH_WORD,
+} from "./wordsAction";
 import Words from "../models/Words";
 
 const initialState = {
@@ -23,6 +29,12 @@ export default (state = initialState, action) => {
         words: updatedWord,
       };
     case LOAD_WORDS:
+      return {
+        words: action.words.map(
+          (wd) => new Words(wd.id.toString(), wd.word, wd.description)
+        ),
+      };
+    case SEARCH_WORD:
       return {
         words: action.words.map(
           (wd) => new Words(wd.id.toString(), wd.word, wd.description)
