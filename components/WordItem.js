@@ -9,8 +9,6 @@ import {
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 
-import Colors from "../constants/Colors";
-
 const WordItem = (props) => {
   return (
     <TouchableOpacity onPress={props.onSelect} style={styles.placeItem}>

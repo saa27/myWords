@@ -10,7 +10,6 @@ import {
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import { useSelector, useDispatch } from "react-redux";
 import { LinearGradient } from "expo-linear-gradient";
-import * as wordsActions from "../store/wordsAction";
 
 import Card from "../components/Card";
 import CustomHeaderButton from "../components/CustomHeaderButton";

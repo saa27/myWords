@@ -41,7 +41,7 @@ const AddWordScreen = (props) => {
             onChangeText={WordChangeHandler}
             value={word}
           />
-          <Text style={styles.label}>Desciption</Text>
+          <Text style={styles.label}>Description</Text>
           <TextInput
             style={styles.textInput}
             onChangeText={DescriptionChangeHandler}

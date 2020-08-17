@@ -44,7 +44,7 @@ const EditWordScreen = (props) => {
               setWord(text);
             }}
           />
-          <Text style={styles.label}>Desciption</Text>
+          <Text style={styles.label}>Description</Text>
           <TextInput
             style={styles.textInput}
             value={description}

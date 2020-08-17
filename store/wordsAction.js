@@ -58,18 +58,6 @@ export const loadWords = () => {
   };
 };
 
-export const searchWords = (query) => {
-  return async (dispatch) => {
-    try {
-      const dbResult = await searchWord(query);
-      console.log(dbResult);
-      dispatch({ type: SEARCH_WORD, words: dbResult.rows._array });
-    } catch (err) {
-      throw err;
-    }
-  };
-};
-
 export const deleteWord = (id) => {
   return async (dispatch) => {
     try {

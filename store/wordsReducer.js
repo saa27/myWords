@@ -34,12 +34,6 @@ export default (state = initialState, action) => {
           (wd) => new Words(wd.id.toString(), wd.word, wd.description)
         ),
       };
-    case SEARCH_WORD:
-      return {
-        words: action.words.map(
-          (wd) => new Words(wd.id.toString(), wd.word, wd.description)
-        ),
-      };
     case ADD_WORD:
       const newWord = new Words(
         action.wordData.id.toString(),

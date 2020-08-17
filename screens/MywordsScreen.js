@@ -3,7 +3,6 @@ import { StyleSheet, Platform, FlatList, Alert, View } from "react-native";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import { useSelector, useDispatch } from "react-redux";
 import { LinearGradient } from "expo-linear-gradient";
-import { SearchBar } from "react-native-elements";
 
 import CustomHeaderButton from "../components/CustomHeaderButton";
 import WordItem from "../components/WordItem";
@@ -24,17 +23,6 @@ const MywordsScreen = (props) => {
       style={styles.gradient}
     >
       <View style={styles.viewStyle}>
-        {/* <SearchBar
-          round
-          searchIcon={{ size: 25 }}
-          onChangeText={(query) => {
-            dispatch(wordsActions.searchWords(query));
-            setSearch(query);
-          }}
-          onClear={() => {}}
-          placeholder="Type Here to Search..."
-          value={search}
-        /> */}
         <FlatList
           data={words}
           keyExtractor={(item) => item.id}
